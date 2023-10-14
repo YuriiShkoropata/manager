@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 
 @Controller
 @RequiredArgsConstructor
@@ -40,5 +38,11 @@ public class PlayerController {
     public String deletePlayer(@PathVariable Long id) {
         playerService.deletePlayer(id);
         return "redirect:/";
+    }
+
+    @GetMapping("/addPlayer")
+    public String addNewPlayer(@RequestParam(name = "surname", required = false) String surname, Model model) {
+        model.addAttribute("players", playerService.listPlayers(surname));
+        return "addNewPlayer";
     }
 }
