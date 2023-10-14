@@ -21,11 +21,10 @@ public class PlayerService {
         return playerRepository.findAll();
     }
 
-    public void savePlayer(Player player, MultipartFile file1) throws IOException {
+    public void savePlayer(Player player) {
 
         log.info("Saving new Player. Surname: {}; Rating: {}", player.getSurname(), player.getRating());
         Player playerFromDb = playerRepository.save(player);
-        playerFromDb.setPreviewImageId(playerFromDb.getImages().getId());
         playerRepository.save(player);
     }
 

@@ -24,7 +24,6 @@
     Position: <input type="text" name="position"><br><br>
     Number: <input type="number" name="number"><br><br>
     Rating: <input type="number" name="rating"><br><br>
-    Photo: <input type="file" name="file1"><br><br>
     <input type="submit" value="Add Player"/>
 </form>
 </body>

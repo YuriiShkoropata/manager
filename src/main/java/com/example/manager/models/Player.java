@@ -29,22 +29,4 @@ public class Player {
     private int number;
     @Column(name = "rating")
     private int rating;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
-    mappedBy = "player")
-    private Image images;
-    private Long previewImageId;
-    private LocalDateTime dateOfCreated;
-    @PrePersist
-    private void init() {
-        dateOfCreated = LocalDateTime.now();
-    }
-
-    public void addImageToPlayer(Image image) {
-        image.setPlayer(this);
-        images = image;
-    }
-
-
-
 }

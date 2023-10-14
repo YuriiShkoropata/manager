@@ -19,25 +19,26 @@ public class PlayerController {
     private final PlayerService playerService;
 
     @GetMapping("/")
-    public String players(@RequestParam(name = "surname",required = false) String surname, Model model) {
+    public String players(@RequestParam(name = "surname", required = false) String surname, Model model) {
         model.addAttribute("players", playerService.listPlayers(surname));
         return "players";
     }
+
     @GetMapping("/player/{id}")
     public String playerInfo(@PathVariable Long id, Model model) {
-        Player player = playerService.getPlayerById(id);
-        model.addAttribute("player", player);
-        model.addAttribute("images", player.getImages());
+        model.addAttribute("player", playerService.getPlayerById(id));
         return "player-info";
     }
+
     @PostMapping("/player/create")
-    public String createPlayer(@RequestParam("file1") MultipartFile file1, Player player) throws IOException {
-        playerService.savePlayer(player, file1);
+    public String createPlayer(Player player) {
+        playerService.savePlayer(player);
         return "redirect:/";
     }
+
     @PostMapping("/player/delete/{id}")
     public String deletePlayer(@PathVariable Long id) {
         playerService.deletePlayer(id);
-         return "redirect:/";
+        return "redirect:/";
     }
 }
