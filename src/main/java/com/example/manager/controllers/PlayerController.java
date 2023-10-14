@@ -41,8 +41,7 @@ public class PlayerController {
     }
 
     @GetMapping("/addPlayer")
-    public String addNewPlayer(@RequestParam(name = "surname", required = false) String surname, Model model) {
-        model.addAttribute("players", playerService.listPlayers(surname));
+    public String addNewPlayer() {
         return "addNewPlayer";
     }
 }

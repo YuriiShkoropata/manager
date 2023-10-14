@@ -20,8 +20,7 @@ public class PlayerService {
     }
 
     public void savePlayer(Player player) {
-
-        log.info("Saving new Player. Surname: {}; Rating: {}", player.getSurname(), player.getRating());
+        log.info("Saving new {}", player);
         playerRepository.save(player);
     }
 
