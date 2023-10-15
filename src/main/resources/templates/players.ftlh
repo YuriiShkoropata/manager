@@ -13,7 +13,7 @@
 </form>
 <#list players as player>
     <div>
-        <p><b>${player.surname}</b> ${player.position} ${player.rating} | <a href="/player/${player.id}">Details</a></p>
+        <p><b>${player.surname}</b> ${player.position} <b>${player.rating}</b> | <a href="/player/${player.id}">Details</a></p>
     </div>
 </#list>
 <hr>

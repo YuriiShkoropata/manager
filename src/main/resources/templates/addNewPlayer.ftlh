@@ -7,7 +7,7 @@
 <h1>ADD NEW PLAYER</h1>
 <hr>
 <h3>Add new Player</h3>
-<form action="/player/create" method="post" enctype="multipart/form-data">
+<form action="/player/create" method="post">
     Name of player: <input type="text" name="name"><br><br>
     Surname of player: <input type="text" name="surname"><br><br>
     Position: <input type="text" name="position"><br><br>
