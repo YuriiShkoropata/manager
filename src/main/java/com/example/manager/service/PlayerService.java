@@ -20,6 +20,7 @@ public class PlayerService {
     }
 
     public void savePlayer(Player player) {
+        player.setId(player.getId());
         log.info("Saving new {}", player);
         playerRepository.save(player);
     }

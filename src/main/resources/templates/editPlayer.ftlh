@@ -7,6 +7,7 @@
 <h1>EDIT PLAYER</h1>
 <hr>
 <form action="/player/create" method="post">
+    <input type="hidden" name="id" value="${player.id}" />
     Name of player: <input type="text" name="name" value="${player.name}"><br><br>
     Surname of player: <input type="text" name="surname" value="${player.surname}"><br><br>
     Position: <input type="text" name="position" value="${player.position}"><br><br>
