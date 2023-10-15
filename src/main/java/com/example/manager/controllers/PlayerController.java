@@ -5,10 +5,7 @@ import com.example.manager.service.PlayerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -29,7 +26,7 @@ public class PlayerController {
     }
 
     @PostMapping("/player/create")
-    public String createPlayer(Player player) {
+    public String createPlayer(@ModelAttribute("player") Player player) {
         playerService.savePlayer(player);
         return "redirect:/";
     }
@@ -38,6 +35,12 @@ public class PlayerController {
     public String deletePlayer(@PathVariable Long id) {
         playerService.deletePlayer(id);
         return "redirect:/";
+    }
+    @GetMapping("/player/update/{id}")
+    public String editPlayer(@PathVariable(value = "id") Long id, Model model) {
+        Player player = playerService.getPlayerById(id);
+        model.addAttribute("player", player);
+        return "/editPlayer";
     }
 
     @GetMapping("/addPlayer")
