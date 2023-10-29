@@ -1,7 +1,10 @@
 package com.example.manager.controllers;
 
 import com.example.manager.models.Player;
+import com.example.manager.models.Skills;
 import com.example.manager.service.PlayerService;
+import com.example.manager.service.SkillsService;
+import com.example.manager.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class PlayerController {
     private final PlayerService playerService;
+    private final SkillsService skillsService;
 
     @GetMapping("/")
     public String players(@RequestParam(name = "surname", required = false) String surname, Model model) {
@@ -46,5 +50,12 @@ public class PlayerController {
     @GetMapping("/addPlayer")
     public String addNewPlayer() {
         return "addNewPlayer";
+    }
+
+    @GetMapping("/player/skills/{id}")
+    public String showPlayerSkills(@PathVariable(value = "id") Long id, Model model) {
+        Player player = playerService.getPlayerById(id);
+        model.addAttribute("allSkills", skillsService.listSkills(player.getSkills().getId()));
+        return "/skills";
     }
 }

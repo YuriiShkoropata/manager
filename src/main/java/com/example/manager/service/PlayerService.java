@@ -1,7 +1,9 @@
 package com.example.manager.service;
 
 import com.example.manager.models.Player;
+import com.example.manager.models.Skills;
 import com.example.manager.repositories.PlayerRepository;
+import com.example.manager.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ public class PlayerService {
 
     public void savePlayer(Player player) {
         player.setId(player.getId());
+       //////// player.setSkills(Utils.defaultSkills);///////
         log.info("Saving new {}", player);
         playerRepository.save(player);
     }

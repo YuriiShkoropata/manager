@@ -24,7 +24,11 @@
 </form>
 <br>
 <a href="/"> <button>ALL PLAYERS</button> </a>
-    </p>
+<br><br>
+<form action="/player/skills/${player.id}" method="get">
+     <input type="submit" value="SHOW SKILLS"/>
+</form>
+</p>
 </div>
 </body>
 </html>
