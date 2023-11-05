@@ -4,7 +4,6 @@ import com.example.manager.models.Player;
 import com.example.manager.models.Skills;
 import com.example.manager.service.PlayerService;
 import com.example.manager.service.SkillsService;
-import com.example.manager.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +31,10 @@ public class PlayerController {
     @PostMapping("/player/create")
     public String createPlayer(@ModelAttribute("player") Player player) {
         playerService.savePlayer(player);
+        Skills skills = new Skills(0L, 0,0,0,0,0,0,0,player);
+        skillsService.saveSkills(skills);
+        player.setSkills(skills);
+        playerService.savePlayer(player);
         return "redirect:/";
     }
 
@@ -55,7 +58,19 @@ public class PlayerController {
     @GetMapping("/player/skills/{id}")
     public String showPlayerSkills(@PathVariable(value = "id") Long id, Model model) {
         Player player = playerService.getPlayerById(id);
-        model.addAttribute("allSkills", skillsService.listSkills(player.getSkills().getId()));
+        model.addAttribute("skills", skillsService.getSkillsById(player.getSkills().getId()));
+        model.addAttribute("player", player);
         return "/skills";
+    }
+    @GetMapping("/skills/edit/{id}")
+    public String editSkills(@PathVariable(value = "id") Long id, Model model) {
+        Skills skills = playerService.getPlayerById(id).getSkills();
+        model.addAttribute("skills", skills);
+        return "/edit_skills";
+    }
+    @PostMapping("/player/skills/set")
+    public String createPlayer(@ModelAttribute("skills") Skills skills) {
+        skillsService.saveSkills(skills);
+        return "redirect:/";
     }
 }

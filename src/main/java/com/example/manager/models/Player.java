@@ -25,7 +25,7 @@ public class Player {
     private int number;
     @Column(name = "rating")
     private int rating;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "skills")
+    @OneToOne(cascade = CascadeType.ALL)
+   // @JoinTable(name = "skills")
     private Skills skills;
 }

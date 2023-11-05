@@ -29,4 +29,6 @@ public class Skills {
     private int technique;
     @Column(name = "interceptions")
     private int interceptions;
+    @OneToOne
+    private Player player;
 }
