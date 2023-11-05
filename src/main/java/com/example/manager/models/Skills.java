@@ -29,6 +29,6 @@ public class Skills {
     private int technique;
     @Column(name = "interceptions")
     private int interceptions;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Player player;
 }

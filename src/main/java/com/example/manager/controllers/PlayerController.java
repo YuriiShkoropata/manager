@@ -29,9 +29,9 @@ public class PlayerController {
     }
 
     @PostMapping("/player/create")
-    public String createPlayer(@ModelAttribute("player") Player player) {
+    public String createPlayer(@ModelAttribute("player") Player player, Skills skills) {
         playerService.savePlayer(player);
-        Skills skills = new Skills(0L, 0,0,0,0,0,0,0,player);
+       // Skills skills = new Skills(0L, 0,0,0,0,0,0,0,player);
         skillsService.saveSkills(skills);
         player.setSkills(skills);
         playerService.savePlayer(player);
