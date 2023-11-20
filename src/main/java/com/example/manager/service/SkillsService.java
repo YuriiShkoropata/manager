@@ -26,6 +26,6 @@ public class SkillsService {
         skillsRepository.save(skills);
     }
     public Skills getSkillsById(Long id) {
-        return skillsRepository.findById(id).orElse(null);
+        return skillsRepository.findById(id).orElse(new Skills());
     }
 }

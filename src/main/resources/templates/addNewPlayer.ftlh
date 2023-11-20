@@ -39,7 +39,7 @@
         </optgroup>
     </select><br><br>
     Number: <input type="number" name="number"><br><br>
-    Rating: <input type="number" name="rating"><br><br>
+    <#--Rating: <input type="number" name="rating"><br><br>-->
     <input type="submit" value="Add Player"/>
 </form>
 </body>

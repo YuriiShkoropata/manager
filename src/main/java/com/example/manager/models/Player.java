@@ -26,6 +26,5 @@ public class Player {
     @Column(name = "rating")
     private int rating;
     @OneToOne(cascade = CascadeType.ALL)
-   // @JoinTable(name = "skills")
     private Skills skills;
 }

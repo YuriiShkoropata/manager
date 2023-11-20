@@ -29,11 +29,16 @@ public class PlayerController {
     }
 
     @PostMapping("/player/create")
-    public String createPlayer(@ModelAttribute("player") Player player, Skills skills) {
-        playerService.savePlayer(player);
-       // Skills skills = new Skills(0L, 0,0,0,0,0,0,0,player);
-        skillsService.saveSkills(skills);
-        player.setSkills(skills);
+    public String createPlayer(@ModelAttribute("player") Player player) {
+
+        if (player.getSkills() == null && player.getId() != null) {
+            player.setSkills(skillsService.getSkillsById(player.getId()));
+            skillsService.saveSkills(player.getSkills());
+        } else {
+            player.setSkills(new Skills());
+            skillsService.saveSkills(player.getSkills());
+        }
+        player.setRating(playerService.calculateRating(player));
         playerService.savePlayer(player);
         return "redirect:/";
     }
@@ -69,8 +74,11 @@ public class PlayerController {
         return "/edit_skills";
     }
     @PostMapping("/player/skills/set")
-    public String createPlayer(@ModelAttribute("skills") Skills skills) {
+    public String createSkills(@ModelAttribute("skills") Skills skills, Player player) {
+        player = playerService.getPlayerById(player.getId());
         skillsService.saveSkills(skills);
+        player.setRating(playerService.calculateRating(skills));
+        playerService.savePlayer(player);
         return "redirect:/";
     }
 }
